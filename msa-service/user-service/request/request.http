@@ -1,0 +1,30 @@
+### 회원가입
+# @no-redirect
+POST http://localhost:8080/users/sign-up
+Content-Type: application/json
+
+{
+  "email": "email",
+  "password": "1234",
+  "name": "치타"
+}
+
+### 아이디 조회
+# @no-redirect
+GET http://localhost:8080/users/1
+Content-Type: application/json
+
+### 전체 회원
+# @no-redirect
+GET http://localhost:8080/users?userIds=1,2
+Content-Type: application/json
+
+### 포인트적립
+# @no-redirect
+POST http://localhost:8080/users/activity-score/add
+Content-Type: application/json
+
+{
+"userId": 1,
+"score": 1000
+}

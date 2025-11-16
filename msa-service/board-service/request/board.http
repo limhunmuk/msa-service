@@ -1,0 +1,24 @@
+### 글쓰기
+# @no-redirect
+POST http://localhost:8081/boards
+Content-Type: application/json
+
+{
+  "title": "테스트",
+  "content": "테스트",
+  "userId": 1
+}
+
+### 글 조회
+# @no-redirect
+GET http://localhost:8081/boards/1
+Content-Type: application/json
+
+
+### 전체 글 조회
+# @no-redirect
+GET http://localhost:8081/boards
+Content-Type: application/json
+
+
+

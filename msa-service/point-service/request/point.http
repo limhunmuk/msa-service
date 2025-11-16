@@ -1,0 +1,22 @@
+### 포인트 적립
+# @no-redirect
+POST http://localhost:8082/points/add
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "amount": 1000
+}
+
+### 포인트 차감
+POST http://localhost:8082/points/deduct
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "amount": 500
+}
+
+
+
+
