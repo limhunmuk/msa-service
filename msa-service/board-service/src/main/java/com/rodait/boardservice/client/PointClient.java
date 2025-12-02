@@ -1,5 +1,6 @@
 package com.rodait.boardservice.client;
 
+import com.rodait.boardservice.dto.AddPointRequestDto;
 import com.rodait.boardservice.dto.DeductPointRequestDto;
 import com.rodait.boardservice.dto.UserResponsedto;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +24,11 @@ public class PointClient {
                 .build();
     }
 
+    /**
+     * 포인트 차감
+     * @param userId
+     * @param amount
+     */
     public void deductPoints(Long userId, int amount) {
 
         DeductPointRequestDto requestDto = new DeductPointRequestDto(userId, amount);
@@ -30,6 +36,22 @@ public class PointClient {
         // REST API 호출
         this.restClient.post()
                 .uri("/points/deduct", userId)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(requestDto)
+                .retrieve()
+                .toBodilessEntity(); // 응답으로 받을게 없다
+    }
+
+    /**
+     * 포인트 추가
+     * @param userId
+     * @param amount
+     */
+    public void addPoints(Long userId, int amount) {
+        AddPointRequestDto requestDto = new AddPointRequestDto(userId, amount);
+        // REST API 호출
+        this.restClient.post()
+                .uri("/points/add", userId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(requestDto)
                 .retrieve()
