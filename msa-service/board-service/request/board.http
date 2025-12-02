@@ -4,9 +4,9 @@ POST http://localhost:8081/boards
 Content-Type: application/json
 
 {
-  "title": "테스트",
-  "content": "테스트",
-  "userId": 1
+  "title": "테스트 글",
+  "content": "테스트 내용",
+  "userId": 7
 }
 
 ### 글 조회
