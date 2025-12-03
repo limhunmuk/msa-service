@@ -4,7 +4,7 @@ POST http://localhost:8080/users/sign-up
 Content-Type: application/json
 
 {
-  "email": "email",
+  "email": "loginid",
   "password": "1234",
   "name": "치타"
 }

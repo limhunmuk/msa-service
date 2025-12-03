@@ -26,13 +26,15 @@ public class BoardController {
 
     @GetMapping("/{boardId}")
     public ResponseEntity<?> getBoardById(@PathVariable Long boardId) {
-        BoardResponseDto boardResponseDto = boardService.getBoard(boardId);
+        //BoardResponseDto boardResponseDto = boardService.getBoard(boardId);
+        BoardResponseDto boardResponseDto = boardService.getBoard2(boardId);
         return ResponseEntity.ok(boardResponseDto);
     }
 
     @GetMapping()
     public ResponseEntity<List<BoardResponseDto>> getAllBoards() {
-        List<BoardResponseDto> boardResponseDtos = boardService.getBoards();
+        //List<BoardResponseDto> boardResponseDtos = boardService.getBoards();
+        List<BoardResponseDto> boardResponseDtos = boardService.getBoards2();
         return ResponseEntity.ok(boardResponseDtos);
     }
 
