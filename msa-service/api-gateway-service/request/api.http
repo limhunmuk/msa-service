@@ -4,6 +4,18 @@ GET http://localhost:8081/api/boards
 Content-Type: application/json
 
 
+### 글 EMDFHR
+# @no-redirect
+POST http://localhost:8081/api/boards
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNiJ9.zFj5uG47aI4zUWeYu-mqsRaXgYJa5WV60g7Lrf3qDIs
+Content-Type: application/json
+
+{
+"title": "테스트 글",
+"content": "테스트 내용",
+"userId": 10
+}
+
 ### 회원가입
 # @no-redirect
 POST http://localhost:8000/api/users/sign-up

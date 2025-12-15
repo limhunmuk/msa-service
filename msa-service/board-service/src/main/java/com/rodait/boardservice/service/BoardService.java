@@ -43,7 +43,7 @@ public class BoardService {
      * 게시글 작성
      * @param requestDto
      */
-    public void createBoard(CreateBoardRequestDto requestDto) {
+    public void createBoard(CreateBoardRequestDto requestDto, Long userId) {
 
         // 게시글 저장 플래그
         boolean isBoardCreated = false;
@@ -54,14 +54,14 @@ public class BoardService {
 
         try {
             // 게시글 작성 시 포인트 100점 차감
-            pointClient.deductPoints(requestDto.getUserId(), 100);
+            pointClient.deductPoints(userId, 100);
             isPointDeducted = true; // 포인트가 정상 차감됨
             System.out.println("포인트 100점 차감 완료");
 
             var board = new Board(
                     requestDto.getTitle(),
                     requestDto.getContent(),
-                    requestDto.getUserId()
+                    userId
             );
             Board save = boardRepository.save(board);
             savedBoardId = save.getId();
@@ -88,7 +88,7 @@ public class BoardService {
 
             if(isPointDeducted){
                 // 포인트가 차감된 상태에서 예외 발생 시, 차감된 포인트 복구
-                pointClient.addPoints(requestDto.getUserId(), 100);
+                pointClient.addPoints(userId, 100);
                 System.out.println("[보상트랜젝션] 포인트 100점 복구 완료");
             }
 
