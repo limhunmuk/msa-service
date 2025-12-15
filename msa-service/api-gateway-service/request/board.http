@@ -1,0 +1,18 @@
+### 전체 글 조회
+# @no-redirect
+GET http://localhost:8000/boards
+Content-Type: application/json
+
+
+### 회원가입
+# @no-redirect
+POST http://localhost:8000/users/sign-up
+Content-Type: application/json
+
+{
+  "email": "loginid",
+  "password": "1234",
+  "name": "치타"
+}
+
+
