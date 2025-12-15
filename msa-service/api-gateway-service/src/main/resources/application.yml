@@ -10,14 +10,24 @@ spring:
             - id: user-service
               uri: http://localhost:8080
               predicates:
-                - Path=/users/**
-
+                - Path=/api/users/**
+            - id: board-service-jwt
+              uri: http://localhost:8081
+              predicates:
+                - Path=/api/boards/**
+                - Method=POST
+              filters:
+                - JwtAuthenticationFilter
             - id: board-service
               uri: http://localhost:8081
               predicates:
-              - Path=/boards/**
+              - Path=/api/boards/**
 
-            - id: point-service # 식별자
-              uri: http://localhost:8082 # 전달주소
-              predicates:
-                - Path=/points/** # 전달 패턴
+#            - id: point-service # 식별자
+#              uri: http://localhost:8082 # 전달주소
+#              predicates:
+#                - Path=/points/** # 전달 패턴
+
+
+jwt:
+  secret: jscode-secret-1234-1234-1234-1234

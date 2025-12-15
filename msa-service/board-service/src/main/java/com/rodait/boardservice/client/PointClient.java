@@ -35,7 +35,7 @@ public class PointClient {
 
         // REST API 호출
         this.restClient.post()
-                .uri("/points/deduct", userId)
+                .uri("/internal/points/deduct", userId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(requestDto)
                 .retrieve()
@@ -51,7 +51,7 @@ public class PointClient {
         AddPointRequestDto requestDto = new AddPointRequestDto(userId, amount);
         // REST API 호출
         this.restClient.post()
-                .uri("/points/add", userId)
+                .uri("/internal/points/add", userId)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(requestDto)
                 .retrieve()

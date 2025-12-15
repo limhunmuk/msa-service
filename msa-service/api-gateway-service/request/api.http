@@ -1,0 +1,26 @@
+### 전체 글 조회
+# @no-redirect
+GET http://localhost:8081/api/boards
+Content-Type: application/json
+
+
+### 회원가입
+# @no-redirect
+POST http://localhost:8000/api/users/sign-up
+Content-Type: application/json
+
+{
+  "email": "api-join-user",
+  "password": "1234",
+  "name": "홍길동"
+}
+
+
+
+### 조회
+# @no-redirect
+POST http://localhost:8000/internal/users/10
+Content-Type: application/json
+
+
+

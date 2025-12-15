@@ -28,7 +28,7 @@ public class UserClient {
         // REST API 호출
         try {
             UserResponsedto body = this.restClient.get()
-                    .uri("/users/{userId}", userId)
+                    .uri("/internal/users/{userId}", userId)
                     .retrieve()
                     .body(UserResponsedto.class);
             return Optional.ofNullable(body);
@@ -47,7 +47,7 @@ public class UserClient {
             return this.restClient.get()
                     .uri(uriBuilder ->
                             uriBuilder
-                                    .path("/users")
+                                    .path("/internal/users")
                                     .queryParam("userIds", userIds)
                                     .build()
                     )
@@ -66,7 +66,7 @@ public class UserClient {
 
         AddActivityScoreRequestDto requestDto = new AddActivityScoreRequestDto(userId, score);
         this.restClient.post()
-                .uri("/users/activity-score/add", userId)
+                .uri("/internal/users/activity-score/add", userId)
                 .body(requestDto)
                 .retrieve()
                 .toBodilessEntity();

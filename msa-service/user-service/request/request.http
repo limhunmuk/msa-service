@@ -1,12 +1,22 @@
 ### 회원가입
 # @no-redirect
-POST http://localhost:8080/users/sign-up
+POST http://localhost:8080/api/users/sign-up
 Content-Type: application/json
 
 {
-  "email": "loginid",
+  "email": "id",
   "password": "1234",
-  "name": "치타"
+  "name": "둘리"
+}
+
+### 로그인
+# @no-redirect
+POST http://localhost:8000/api/users/login
+Content-Type: application/json
+
+{
+  "email": "id",
+  "password": "1234"
 }
 
 ### 아이디 조회

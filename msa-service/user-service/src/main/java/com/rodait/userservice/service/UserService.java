@@ -2,16 +2,19 @@ package com.rodait.userservice.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rodait.userservice.client.PointClient;
-import com.rodait.userservice.dto.AddActivityScoreRequestDto;
+import com.rodait.userservice.dto.*;
 import com.rodait.userservice.domian.User;
-import com.rodait.userservice.dto.SignUpRequestDto;
 import com.rodait.userservice.domian.UserRepository;
-import com.rodait.userservice.dto.UserResponseDto;
 import com.rodait.userservice.event.UserSignedUpEvent;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,13 +26,17 @@ public class UserService {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
+    private final String jwtSercret;
+
     public UserService(UserRepository userRepository
             , PointClient pointClient
             , KafkaTemplate<String, String> kafkaTemplate
+            , @Value("${jwt.secret}") String jwtSecret
     ) {
         this.pointClient = pointClient;
         this.userRepository = userRepository;
         this.kafkaTemplate = kafkaTemplate;
+        this.jwtSercret = jwtSecret;
     }
 
     /**
@@ -111,5 +118,28 @@ public class UserService {
 
         user.addActivityScore(requestDto.getScore());
         userRepository.save(user);
+    }
+
+    public LoginResponseDto login(LoginRequestDto requestDto) {
+
+        User user = userRepository.findByEmail(requestDto.getEmail())
+                .orElseThrow(() -> new RuntimeException("사용자를 찾을 수 업습니다."));
+
+        if(!Objects.equals(user.getPassword(), requestDto.getPassword())){
+            throw new RuntimeException("비밀번호가 일치하지 않습니다.");
+        }
+
+        // key 생성
+        SecretKey secretKey = Keys.hmacShaKeyFor(
+                jwtSercret.getBytes(StandardCharsets.UTF_8)
+        );
+
+        // 토큰 생성
+        String token = Jwts.builder()
+                .subject(String.valueOf(user.getId()))
+                .signWith(secretKey)
+                .compact();
+
+        return new LoginResponseDto(token);
     }
 }
