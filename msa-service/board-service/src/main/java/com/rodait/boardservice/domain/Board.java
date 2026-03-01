@@ -12,7 +12,13 @@ public class Board {
 
     private String title;
     private String content;
+
+    @Column(name = "user_id")
     private Long userId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    private User user;
 
     public Board() {
     }
@@ -34,6 +40,9 @@ public class Board {
     }
     public Long getUserId() {
         return userId;
+    }
+    public User getUser() {
+        return user;
     }
 
 }

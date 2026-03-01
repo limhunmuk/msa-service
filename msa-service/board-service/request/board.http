@@ -4,14 +4,19 @@ POST http://localhost:8081/boards
 Content-Type: application/json
 
 {
-  "title": "테스트",
-  "content": "테스트",
-  "userId": 1
+  "title": "테스트 글",
+  "content": "테스트 내용",
+  "userId": 10
 }
 
 ### 글 조회
 # @no-redirect
-GET http://localhost:8081/boards/1
+GET http://localhost:8081/boards/6
+Content-Type: application/json
+
+### 글 조회(게이트웨이)
+# @no-redirect
+GET http://localhost:8000/boards
 Content-Type: application/json
 
 

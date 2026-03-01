@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/boards")
+@RequestMapping("/api/boards")
 public class BoardController {
 
     private final BoardService boardService;
@@ -19,20 +19,23 @@ public class BoardController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createBoard(@RequestBody CreateBoardRequestDto requestDto) {
-        boardService.createBoard(requestDto);
+    public ResponseEntity<Void> create(@RequestBody CreateBoardRequestDto requestDto
+    , @RequestHeader("X-User-Id") Long userId) {
+        boardService.createBoard(requestDto, userId);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{boardId}")
     public ResponseEntity<?> getBoardById(@PathVariable Long boardId) {
-        BoardResponseDto boardResponseDto = boardService.getBoard(boardId);
+        //BoardResponseDto boardResponseDto = boardService.getBoard(boardId);
+        BoardResponseDto boardResponseDto = boardService.getBoard2(boardId);
         return ResponseEntity.ok(boardResponseDto);
     }
 
     @GetMapping()
     public ResponseEntity<List<BoardResponseDto>> getAllBoards() {
-        List<BoardResponseDto> boardResponseDtos = boardService.getBoards();
+        //List<BoardResponseDto> boardResponseDtos = boardService.getBoards();
+        List<BoardResponseDto> boardResponseDtos = boardService.getBoards2();
         return ResponseEntity.ok(boardResponseDtos);
     }
 
