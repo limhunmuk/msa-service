@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 public class UserLoginHistory {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userLoginHistoryId;
 
     @ManyToOne

@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 public class UserToken {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userTokenId;
 
     @ManyToOne
@@ -28,5 +29,9 @@ public class UserToken {
 
     @Column(nullable = false)
     private LocalDateTime expiredAt;
+
+    public boolean isExpired() {
+        return expiredAt.isBefore(LocalDateTime.now());
+    }
 
 }

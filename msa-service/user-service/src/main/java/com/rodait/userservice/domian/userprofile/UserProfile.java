@@ -1,6 +1,7 @@
 package com.rodait.userservice.domian.userprofile;
 
 import com.rodait.userservice.domian.BaseDateEntity;
+import com.rodait.userservice.domian.BaseEntity;
 import com.rodait.userservice.domian.user.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,14 +11,14 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "user_profile")
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 @SuperBuilder
-public class UserProfile extends BaseDateEntity {
+@NoArgsConstructor
+public class UserProfile extends BaseEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userProfileId;
 
     @OneToOne
