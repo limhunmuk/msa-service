@@ -11,7 +11,7 @@ spring:
               uri: http://localhost:8080
               predicates:
                 - Path=/api/users/**
-            - id: board-service-jwt
+            - id: board-service-jwt       # 인증이 필요한 부분 추가
               uri: http://localhost:8081
               predicates:
                 - Path=/api/boards/**

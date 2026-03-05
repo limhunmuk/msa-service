@@ -1,12 +1,24 @@
 ### 글쓰기
 # @no-redirect
-POST http://localhost:8081/boards
+POST http://localhost:8081/api/boards
 Content-Type: application/json
 
 {
   "title": "테스트 글",
   "content": "테스트 내용",
-  "userId": 10
+  "userId": 1
+}
+
+
+### 글쓰기
+# @no-redirect
+POST http://localhost:8081/api/boards
+Content-Type: application/json
+X-User-Id: 1
+
+{
+  "title": "테스트 글",
+  "content": "테스트 내용"
 }
 
 ### 글 조회
