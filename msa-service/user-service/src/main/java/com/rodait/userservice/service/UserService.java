@@ -2,8 +2,8 @@ package com.rodait.userservice.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rodait.userservice.client.PointClient;
-import com.rodait.userservice.domian.user.User;
-import com.rodait.userservice.domian.user.UserRepository;
+import com.rodait.userservice.domain.user.User;
+import com.rodait.userservice.domain.user.UserRepository;
 import com.rodait.userservice.dto.user.*;
 import com.rodait.userservice.event.UserSignedUpEvent;
 import io.jsonwebtoken.Jwts;
@@ -57,6 +57,9 @@ public class UserService {
                 .name(requestDto.getName())
                 .email(requestDto.getEmail())
                 .password(requestDto.getPassword())
+                .activityScore(0)
+                .role("ROLE_USER")
+                .status("ACTIVE")
                 .build();
 
         User save = userRepository.save(user);

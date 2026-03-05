@@ -1,5 +1,5 @@
-package com.rodait.userservice.domian.userloginhistory;
-import com.rodait.userservice.domian.user.User;
+package com.rodait.userservice.domain.userloginhistory;
+import com.rodait.userservice.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;

@@ -1,4 +1,4 @@
-package com.rodait.userservice.domian.usertoken;
+package com.rodait.userservice.domain.usertoken;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

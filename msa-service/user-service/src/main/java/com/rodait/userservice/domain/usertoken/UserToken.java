@@ -1,6 +1,6 @@
-package com.rodait.userservice.domian.usertoken;
+package com.rodait.userservice.domain.usertoken;
 
-import com.rodait.userservice.domian.user.User;
+import com.rodait.userservice.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;

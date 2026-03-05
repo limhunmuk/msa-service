@@ -1,8 +1,7 @@
-package com.rodait.userservice.domian.userprofile;
+package com.rodait.userservice.domain.userprofile;
 
-import com.rodait.userservice.domian.BaseDateEntity;
-import com.rodait.userservice.domian.BaseEntity;
-import com.rodait.userservice.domian.user.User;
+import com.rodait.userservice.domain.BaseEntity;
+import com.rodait.userservice.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;

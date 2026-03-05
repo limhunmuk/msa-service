@@ -1,4 +1,4 @@
-package com.rodait.userservice.domian.userloginhistory;
+package com.rodait.userservice.domain.userloginhistory;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

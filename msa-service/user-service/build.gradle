@@ -24,7 +24,14 @@ repositories {
     mavenCentral()
 }
 
-def querydslDir = "$buildDir/generated/querydsl"
+ext {
+    snippetsDir = file('build/generated-snippets')
+}
+
+test {
+    outputs.dir snippetsDir
+}
+
 
 dependencies {
 
@@ -53,14 +60,18 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
-sourceSets {
-    main.java.srcDirs += querydslDir
-}
 
-tasks.withType(JavaCompile) {
-    options.generatedSourceOutputDirectory = file(querydslDir)
-}
+// gradle clean 시에 QClass 디렉토리 삭제
+clean {	delete file('src/main/generated')}
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs << "-parameters"
+}
+
+test {
+    outputs.dir snippetsDir
 }

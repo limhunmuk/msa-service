@@ -1,4 +1,4 @@
-package com.rodait.userservice.domian;
+package com.rodait.userservice.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

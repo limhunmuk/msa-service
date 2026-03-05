@@ -1,4 +1,4 @@
-package com.rodait.userservice.domian.user;
+package com.rodait.userservice.domain.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
