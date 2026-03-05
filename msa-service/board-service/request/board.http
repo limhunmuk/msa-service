@@ -25,5 +25,12 @@ Content-Type: application/json
 GET http://localhost:8081/boards
 Content-Type: application/json
 
+### 기업정보 조회
+# @no-redirect
+GET https://api.nicebizline.com/api/opengate/v1/company/overview/1168115020/profile
+Content-Type: application/json
+client-id: 5dBicEYGwFzWTheBxyEbcaxhMuZRbKmG
+client-secret: !gnsanR2119
+
 
 

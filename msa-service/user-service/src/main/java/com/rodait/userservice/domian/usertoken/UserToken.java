@@ -1,0 +1,32 @@
+package com.rodait.userservice.domian.usertoken;
+
+import com.rodait.userservice.domian.user.User;
+import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table(name = "user_token")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@SuperBuilder
+public class UserToken {
+
+    @Id
+    private Long userTokenId;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @Column(nullable = false, length = 255)
+    private String refreshToken;
+
+    @Column(nullable = false)
+    private LocalDateTime expiredAt;
+
+}

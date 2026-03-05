@@ -1,11 +1,11 @@
 package com.rodait.userservice.controller;
 
-import com.rodait.userservice.dto.*;
+import com.rodait.userservice.dto.user.LoginRequestDto;
+import com.rodait.userservice.dto.user.LoginResponseDto;
+import com.rodait.userservice.dto.user.SignUpRequestDto;
 import com.rodait.userservice.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")

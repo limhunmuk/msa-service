@@ -2,9 +2,9 @@ package com.rodait.userservice.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rodait.userservice.client.PointClient;
-import com.rodait.userservice.dto.*;
-import com.rodait.userservice.domian.User;
-import com.rodait.userservice.domian.UserRepository;
+import com.rodait.userservice.domian.user.User;
+import com.rodait.userservice.domian.user.UserRepository;
+import com.rodait.userservice.dto.user.*;
 import com.rodait.userservice.event.UserSignedUpEvent;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -45,19 +45,27 @@ public class UserService {
      */
     @Transactional
     public void signUp(SignUpRequestDto requestDto) {
-        var user = new com.rodait.userservice.domian.User(
+
+    /*    var user = new com.rodait.userservice.domian.user.User(
                 null,
                 requestDto.getName(),
                 requestDto.getEmail(),
                 requestDto.getPassword()
-        );
+        );*/
+
+        var user = User.builder()
+                .name(requestDto.getName())
+                .email(requestDto.getEmail())
+                .password(requestDto.getPassword())
+                .build();
+
         User save = userRepository.save(user);
         // 회원가입시 포인트 1000점 지급
-        pointClient.addPoints(save.getId(), 1000);
+        pointClient.addPoints(save.getUserId(), 1000);
 
         // 회원가입 완료 이벤트
         UserSignedUpEvent userSignedUpEvent = new UserSignedUpEvent(
-                save.getId(),
+                save.getUserId(),
                 save.getName()
         );
         // 이벤트 발행 로직 필요 (예: Kafka, RabbitMQ 등)
@@ -82,7 +90,7 @@ public class UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("사용자를 찾을 수 업습니다."));
         return new UserResponseDto(
-                user.getId(),
+                user.getUserId(),
                 user.getName(),
                 user.getEmail()
         );
@@ -98,7 +106,7 @@ public class UserService {
         List<User> users = userRepository.findAllById(userIds);
         return users.stream()
                 .map(user -> new UserResponseDto(
-                        user.getId(),
+                        user.getUserId(),
                         user.getName(),
                         user.getEmail()
                 ))
@@ -116,7 +124,7 @@ public class UserService {
         User user = userRepository.findById(requestDto.getUserId())
                 .orElseThrow(() -> new RuntimeException("사용자를 찾을 수 업습니다."));
 
-        user.addActivityScore(requestDto.getScore());
+        user.setActivityScore(requestDto.getScore());
         userRepository.save(user);
     }
 
@@ -136,7 +144,7 @@ public class UserService {
 
         // 토큰 생성
         String token = Jwts.builder()
-                .subject(String.valueOf(user.getId()))
+                .subject(String.valueOf(user.getUserId()))
                 .signWith(secretKey)
                 .compact();
 

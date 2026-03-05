@@ -1,4 +1,4 @@
-package com.rodait.userservice.dto;
+package com.rodait.userservice.dto.user;
 
 public class LoginResponseDto {
 

@@ -1,6 +1,6 @@
 package com.rodait.userservice.consumer;
 
-import com.rodait.userservice.dto.AddActivityScoreRequestDto;
+import com.rodait.userservice.dto.user.AddActivityScoreRequestDto;
 import com.rodait.userservice.event.BoardCreatedEvent;
 import com.rodait.userservice.service.UserService;
 import org.springframework.kafka.annotation.KafkaListener;

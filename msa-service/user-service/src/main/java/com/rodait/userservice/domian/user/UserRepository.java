@@ -1,6 +1,5 @@
-package com.rodait.userservice.domian;
+package com.rodait.userservice.domian.user;
 
-import com.rodait.userservice.dto.LoginResponseDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

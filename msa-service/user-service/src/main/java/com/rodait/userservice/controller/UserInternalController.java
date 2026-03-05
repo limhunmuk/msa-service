@@ -1,8 +1,7 @@
 package com.rodait.userservice.controller;
 
-import com.rodait.userservice.dto.AddActivityScoreRequestDto;
-import com.rodait.userservice.dto.SignUpRequestDto;
-import com.rodait.userservice.dto.UserResponseDto;
+import com.rodait.userservice.dto.user.AddActivityScoreRequestDto;
+import com.rodait.userservice.dto.user.UserResponseDto;
 import com.rodait.userservice.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

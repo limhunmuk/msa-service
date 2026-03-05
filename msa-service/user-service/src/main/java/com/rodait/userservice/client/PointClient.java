@@ -1,8 +1,7 @@
 package com.rodait.userservice.client;
 
 
-import com.rodait.userservice.dto.AddPointRequestDto;
-import com.rodait.userservice.service.UserService;
+import com.rodait.userservice.dto.user.AddPointRequestDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
