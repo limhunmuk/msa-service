@@ -29,4 +29,10 @@ public class UserController {
         return ResponseEntity.ok(responseDto);
     }
 
+    @GetMapping("profile")
+    public ResponseEntity<LoginResponseDto> getProfile(@RequestBody LoginRequestDto requestDto) {
+        LoginResponseDto responseDto = userService.getProfile(requestDto);
+        return ResponseEntity.ok(responseDto);
+    }
+
 }

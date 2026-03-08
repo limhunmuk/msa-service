@@ -131,6 +131,11 @@ public class UserService {
         userRepository.save(user);
     }
 
+    /**
+     * 로그인
+     * @param requestDto
+     * @return
+     */
     public LoginResponseDto login(LoginRequestDto requestDto) {
 
         User user = userRepository.findByEmail(requestDto.getEmail())
@@ -152,5 +157,19 @@ public class UserService {
                 .compact();
 
         return new LoginResponseDto(token);
+    }
+
+    /**
+     * 프로필 조회
+     * @param requestDto
+     * @return
+     */
+    public LoginResponseDto getProfile(LoginRequestDto requestDto) {
+
+        /**
+         * 마이페이지에서 필요한 정보는 로그인한 사용자의 이름, 이메일, 활동 점수, 포인트 등입니다.
+         * 정의 항목
+         */
+        return null;
     }
 }
