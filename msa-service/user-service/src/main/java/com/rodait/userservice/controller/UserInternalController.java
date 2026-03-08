@@ -48,8 +48,8 @@ public class UserInternalController {
     }
 
     @GetMapping("/{userId}/login-history")
-    public ResponseEntity<List<LoginHistoryRequestDto>> getLoginHistory(@PathVariable Long userId) {
-        List<LoginHistoryRequestDto> loginHistory = userLoginHistoryService.getLoginHistoryByUserId(userId);
+    public ResponseEntity<List<?>> getLoginHistory(@PathVariable Long userId) {
+        List<?> loginHistory = userLoginHistoryService.getLoginHistoryByUserId(userId);
         return ResponseEntity.ok(loginHistory);
     }
 }
